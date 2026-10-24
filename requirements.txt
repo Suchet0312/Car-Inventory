@@ -1,0 +1,18 @@
+# Web framework
+fastapi
+uvicorn[standard]
+
+# Database
+sqlalchemy
+
+# Request and data validation
+pydantic[email]
+
+# Authentication and password security
+PyJWT
+pwdlib[argon2]
+python-multipart
+
+# Testing and HTTP requests
+pytest
+httpx
