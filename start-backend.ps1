@@ -13,7 +13,7 @@ Write-Host "📦 Activating virtual environment..." -ForegroundColor Green
 
 # Install dependencies if needed
 Write-Host "📥 Checking dependencies..." -ForegroundColor Green
-pip install -q -r requirements.txt
+pip install -q -r Backend/requirements.txt
 
 # Set JWT Secret
 $env:JWT_SECRET = "super-secret-development-key-change-in-production"
