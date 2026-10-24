@@ -3,6 +3,7 @@ from datetime import datetime, timedelta, timezone
 
 import jwt
 from fastapi import Depends, FastAPI, HTTPException, Query, status
+from fastapi.middleware.cors import CORSMiddleware
 from pwdlib import PasswordHash
 from sqlalchemy import update
 from sqlalchemy.orm import Session
@@ -20,6 +21,15 @@ from app.schemas import (
 from app.security import get_current_user
 
 app = FastAPI(title="Car Dealership Inventory System")
+
+# Configure CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 password_hash = PasswordHash.recommended()
 
