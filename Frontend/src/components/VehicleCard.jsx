@@ -75,26 +75,24 @@ export function VehicleCard({ vehicle, onPurchase, onEdit, onDelete, onRestock, 
           <div className="vehicle-card__price">
             ₹{vehicle.price.toLocaleString('en-IN', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
           </div>
-          
+        </div>
+
+        <div className="vehicle-card__actions">
           <div className="vehicle-card__stock">
             <span className={`stock-badge ${isOutOfStock ? 'stock-badge--empty' : ''}`}>
               {isOutOfStock ? 'Out of Stock' : `${vehicle.quantity} in stock`}
             </span>
           </div>
-        </div>
-
-        <div className="vehicle-card__actions">
-          {!isAdmin && (
+          
+          {!isAdmin ? (
             <button
-              className="btn btn-primary btn-full"
+              className="btn btn-primary"
               onClick={handlePurchase}
               disabled={isOutOfStock || isProcessing}
             >
               {isProcessing ? 'Processing...' : 'Purchase'}
             </button>
-          )}
-          
-          {isAdmin && (
+          ) : (
             <>
               <button
                 className="btn btn-secondary"
