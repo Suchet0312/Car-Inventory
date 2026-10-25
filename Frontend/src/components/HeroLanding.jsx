@@ -77,11 +77,6 @@ export function HeroLanding() {
               Get Started
             </button>
           </div>
-
-          {/* Scroll indicator */}
-          <div className="hero-landing__scroll-indicator">
-            <div className="scroll-arrow"></div>
-          </div>
         </div>
       </div>
 

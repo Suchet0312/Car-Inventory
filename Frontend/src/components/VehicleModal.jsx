@@ -140,15 +140,15 @@ export function VehicleModal({ vehicle, onClose, onSave }) {
 
           <div className="form-group">
             <label htmlFor="price" className="form-label required">
-              Price ($)
+              Price (₹)
             </label>
             <input
               id="price"
               type="number"
               className="form-input"
-              placeholder="25000.00"
+              placeholder="2500000"
               min="0"
-              step="0.01"
+              step="1"
               value={formData.price}
               onChange={(e) => handleChange('price', e.target.value)}
               disabled={isLoading}

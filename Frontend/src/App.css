@@ -48,6 +48,8 @@
 
 html {
   color-scheme: dark;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -58,12 +60,18 @@ body {
   background-color: var(--body-bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 #root {
   min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 /* Auth Pages */
@@ -797,9 +805,11 @@ body {
    ============================================ */
 
 .hero-landing {
-  position: relative;
-  min-height: 100vh;
-  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -813,44 +823,58 @@ body {
 
 /* Video Background */
 .hero-landing__background {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   z-index: 0;
+  overflow: hidden;
 }
 
 .hero-landing__video {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100vw;
+  min-height: 100vh;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
   object-fit: cover;
 }
 
 .hero-landing__fallback-image {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100vw;
+  min-height: 100vh;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
   object-fit: cover;
 }
 
 .hero-landing__overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background: linear-gradient(
     135deg,
-    rgba(0, 0, 0, 0.85) 0%,
-    rgba(0, 0, 0, 0.65) 50%,
-    rgba(220, 38, 38, 0.15) 100%
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.60) 50%,
+    rgba(0, 0, 0, 0.70) 100%
   );
+  z-index: 1;
 }
 
 /* Hero Content */
 .hero-landing__content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   text-align: center;
   padding: 2rem;
   max-width: 900px;
@@ -1253,4 +1277,300 @@ body {
 button, input, a {
   transition-property: all;
   transition-duration: 0.2s;
+}
+
+
+/* ============================================
+   VEHICLE CARD WITH IMAGES
+   ============================================ */
+
+.vehicle-card__image-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 0.75rem 0.75rem 0 0;
+  cursor: pointer;
+  background: var(--gray-800);
+}
+
+.vehicle-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.vehicle-card__image-container:hover .vehicle-card__image {
+  transform: scale(1.1);
+}
+
+.vehicle-card__image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    transparent 100%
+  );
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.vehicle-card__image-container:hover .vehicle-card__image-overlay {
+  opacity: 1;
+}
+
+.vehicle-card__view-details {
+  color: var(--white);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.5rem 1rem;
+  background: var(--accent);
+  border-radius: 0.375rem;
+  transform: translateY(10px);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.vehicle-card__image-container:hover .vehicle-card__view-details {
+  transform: translateY(0);
+}
+
+.vehicle-card__content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+}
+
+/* ============================================
+   VEHICLE DETAIL MODAL
+   ============================================ */
+
+.vehicle-detail-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 2000;
+  animation: modalOverlayFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.vehicle-detail-modal {
+  background: linear-gradient(135deg, var(--gray-900) 0%, var(--black) 100%);
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 1000px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.8),
+    0 0 0 1px var(--gray-800),
+    0 0 80px rgba(220, 38, 38, 0.15);
+  position: relative;
+  animation: modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.vehicle-detail-modal__close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(0, 0, 0, 0.8);
+  border: none;
+  color: var(--gray-500);
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+  line-height: 1;
+  z-index: 10;
+}
+
+.vehicle-detail-modal__close:hover {
+  background: var(--accent);
+  color: var(--white);
+  transform: rotate(90deg);
+}
+
+.vehicle-detail-modal__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.vehicle-detail-modal__image-section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  background: var(--gray-800);
+  border-radius: 1rem 0 0 1rem;
+  overflow: hidden;
+}
+
+.vehicle-detail-modal__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vehicle-detail-modal__info-section {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.vehicle-detail-modal__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.vehicle-detail-modal__title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+}
+
+.vehicle-detail-modal__title .accent {
+  color: var(--accent);
+}
+
+.vehicle-detail-modal__category {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+
+.vehicle-detail-modal__price-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--gray-800);
+  border-radius: 0.75rem;
+  border: 1px solid var(--gray-700);
+}
+
+.vehicle-detail-modal__price {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.stock-badge--large {
+  padding: 0.625rem 1.25rem;
+  font-size: 1rem;
+}
+
+.vehicle-detail-modal__specs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.spec-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.spec-value {
+  font-size: 1.125rem;
+  color: var(--white);
+  font-weight: 600;
+}
+
+.vehicle-detail-modal__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--gray-800);
+}
+
+.btn-large {
+  padding: 0.875rem 1.5rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+/* Responsive Detail Modal */
+@media (max-width: 968px) {
+  .vehicle-detail-modal__content {
+    grid-template-columns: 1fr;
+  }
+
+  .vehicle-detail-modal__image-section {
+    min-height: 300px;
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  .vehicle-detail-modal__info-section {
+    padding: 2rem 1.5rem;
+  }
+
+  .vehicle-detail-modal__price {
+    font-size: 2rem;
+  }
+
+  .vehicle-detail-modal__title {
+    font-size: 1.5rem;
+  }
+
+  .vehicle-detail-modal__specs {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .vehicle-detail-modal {
+    max-width: 95%;
+  }
+
+  .vehicle-detail-modal__close {
+    top: 1rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.5rem;
+  }
+
+  .vehicle-card__image-container {
+    height: 180px;
+  }
 }

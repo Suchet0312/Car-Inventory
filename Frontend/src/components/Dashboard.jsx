@@ -6,6 +6,7 @@ import { Navbar } from './Navbar';
 import { SearchFilters } from './SearchFilters';
 import { VehicleCard } from './VehicleCard';
 import { VehicleModal } from './VehicleModal';
+import { VehicleDetailModal } from './VehicleDetailModal';
 
 export function Dashboard() {
   const [vehicles, setVehicles] = useState([]);
@@ -14,6 +15,7 @@ export function Dashboard() {
   const [selectedVehicle, setSelectedVehicle] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
+  const [detailVehicle, setDetailVehicle] = useState(null);
   
   const { isAdmin } = useAuth();
   const { addToast } = useToast();
@@ -117,6 +119,28 @@ export function Dashboard() {
     setSelectedVehicle(null);
   };
 
+  const handleImageClick = (vehicle) => {
+    setDetailVehicle(vehicle);
+  };
+
+  const handleCloseDetail = () => {
+    setDetailVehicle(null);
+  };
+
+  const handleRestockFromDetail = async (vehicleId) => {
+    const quantity = prompt('Enter quantity to restock:', '10');
+    if (quantity && Number(quantity) > 0) {
+      await handleRestock(vehicleId, Number(quantity));
+    }
+  };
+
+  const handleDeleteFromDetail = async (vehicleId) => {
+    const vehicle = vehicles.find(v => v.id === vehicleId);
+    if (window.confirm(`Are you sure you want to delete ${vehicle?.make} ${vehicle?.model}?`)) {
+      await handleDelete(vehicleId);
+    }
+  };
+
   return (
     <div className="dashboard">
       <Navbar />
@@ -171,6 +195,7 @@ export function Dashboard() {
                   onEdit={handleEdit}
                   onDelete={handleDelete}
                   onRestock={handleRestock}
+                  onImageClick={handleImageClick}
                 />
               ))}
             </div>
@@ -183,6 +208,17 @@ export function Dashboard() {
           vehicle={selectedVehicle}
           onClose={handleCloseModal}
           onSave={handleSaveVehicle}
+        />
+      )}
+
+      {detailVehicle && (
+        <VehicleDetailModal
+          vehicle={detailVehicle}
+          onClose={handleCloseDetail}
+          onPurchase={handlePurchase}
+          onEdit={handleEdit}
+          onRestock={handleRestockFromDetail}
+          onDelete={handleDeleteFromDetail}
         />
       )}
     </div>
