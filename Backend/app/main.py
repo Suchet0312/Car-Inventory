@@ -23,9 +23,13 @@ from app.security import get_current_user
 app = FastAPI(title="Car Dealership Inventory System")
 
 # Configure CORS
+# Allow localhost for development and any origin for production deployment
+# In production, update this to your specific Vercel domain
+allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173").split(",")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=allowed_origins if allowed_origins != ["*"] else ["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

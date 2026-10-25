@@ -1,18 +1,8 @@
-# Web framework
-fastapi
-uvicorn[standard]
-
-# Database
-sqlalchemy
-
-# Request and data validation
-pydantic[email]
-
-# Authentication and password security
-PyJWT
-pwdlib[argon2]
-python-multipart
-
-# Testing and HTTP requests
-pytest
-httpx
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+sqlalchemy==2.0.36
+pydantic==2.10.3
+pydantic[email]==2.10.3
+PyJWT==2.10.1
+pwdlib[argon2]==0.2.1
+python-multipart==0.0.20
