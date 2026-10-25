@@ -1,6 +1,6 @@
-# Car Dealership Inventory System
+# LUXE MOTORS - Inventory Management System
 
-A full-stack Car Dealership Inventory System built for the Incubyte TDD Kata. The backend is a RESTful API built with **FastAPI** (Python) backed by **SQLite**, secured via **JWT authentication**, and developed strictly following Test-Driven Development (TDD). The frontend is a modern, responsive single-page application (SPA) built with **React**, **Vite**, and **Tailwind CSS**.
+A full-stack luxury automotive inventory management system built for the Incubyte TDD Kata. The backend is a RESTful API built with **FastAPI** (Python) backed by **SQLite**, secured via **JWT authentication**, and developed strictly following Test-Driven Development (TDD). The frontend is a modern, responsive single-page application (SPA) built with **React**, **Vite**, and **Tailwind CSS**.
 
 ---
 
@@ -336,29 +336,28 @@ tests/test_vehicles.py::test_concurrent_purchases_cannot_oversell_last_vehicle P
 ## Screenshots
 
 ### Landing Page with Hero Video
-*[Screenshot placeholder - Add hero page with video background]*
+![Landing Page with Hero Video and Call-to-Action Buttons](image.png)
 
 ### User Login Modal
-*[Screenshot placeholder - Add login modal over blurred background]*
+![Login Modal with Blurred Background Effect](image-1.png)
 
 ### Dashboard - Vehicle Inventory Grid
-*[Screenshot placeholder - Add main dashboard with 20 vehicles]*
+![Main Dashboard with 20 Curated Luxury Vehicles](image-2.png)
 
 ### Vehicle Search & Filter
-*[Screenshot placeholder - Add search/filter in action]*
+![Search and Filter Functionality with Real-time Results](image-3.png)
 
 ### Vehicle Detail Modal
-*[Screenshot placeholder - Add clicked vehicle detail view]*
+![Vehicle Detail Modal with Full Specifications](image-4.png)
 
 ### Admin Panel - Add/Edit Vehicle
-*[Screenshot placeholder - Add admin form modal]*
+![Admin Form for Adding and Editing Vehicles](image-5.png)
 
 ### Purchase Confirmation
-*[Screenshot placeholder - Add successful purchase toast]*
+![Successful Purchase Toast Notification](image-6.png)
 
 ### Out of Stock Handling
-*[Screenshot placeholder - Add disabled purchase button]*
-
+![Out of Stock Badge with Disabled Purchase Button](image-7.png)
 ---
 
 ## My AI Usage
