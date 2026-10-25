@@ -1,6 +1,8 @@
-# LUXE MOTORS - Inventory Management System
+# AutoVault - Inventory Management System
 
 A full-stack luxury automotive inventory management system built for the Incubyte TDD Kata. The backend is a RESTful API built with **FastAPI** (Python) backed by **SQLite**, secured via **JWT authentication**, and developed strictly following Test-Driven Development (TDD). The frontend is a modern, responsive single-page application (SPA) built with **React**, **Vite**, and **Tailwind CSS**.
+
+**Live Demo:** https://car-inventory-reiw.vercel.app
 
 ---
 
@@ -9,6 +11,7 @@ A full-stack luxury automotive inventory management system built for the Incubyt
 - [Tech Stack](#tech-stack)
 - [Project Structure](#project-structure)
 - [Setup and Running Locally](#setup-and-running-locally)
+- [Deployment](#deployment)
 - [Test Accounts](#test-accounts)
 - [API Reference](#api-reference)
 - [Running Tests](#running-tests)
@@ -22,7 +25,7 @@ A full-stack luxury automotive inventory management system built for the Incubyt
 
 | Layer     | Technology                              |
 |-----------|-----------------------------------------|
-| Backend   | Python 3.11+, FastAPI, Uvicorn          |
+| Backend   | Python 3.11+ (tested on 3.14), FastAPI, Uvicorn          |
 | Database  | SQLite (via SQLAlchemy ORM)             |
 | Auth      | JWT (PyJWT, HS256), Argon2 (pwdlib)    |
 | Testing   | pytest, httpx, FastAPI TestClient       |
@@ -34,7 +37,7 @@ A full-stack luxury automotive inventory management system built for the Incubyt
 ## Project Structure
 
 ```
-CarInventory/
+Car-Inventory/
 ├── Backend/
 │   ├── app/
 │   │   ├── __init__.py
@@ -54,7 +57,7 @@ CarInventory/
 │   │   └── test_vehicles.py
 │   ├── requirements.txt
 │   ├── seed_data.py           # Database seeding with 20 vehicles
-│   └── dealership.db          # SQLite database (generated)
+│   └── dealership.db          # SQLite database (generated locally, not committed)
 ├── Frontend/
 │   ├── public/
 │   │   ├── vehicles/          # Vehicle images (20 JPG files)
@@ -107,8 +110,8 @@ CarInventory/
 
 ```powershell
 # 1. Clone the repository
-git clone <your-repo-url>
-cd CarInventory
+git clone https://github.com/Suchet0312/Car-Inventory.git
+cd Car-Inventory
 
 # 2. Create and activate virtual environment
 python -m venv venv
@@ -139,6 +142,8 @@ python seed_data.py
 # 7. Start the backend server
 uvicorn app.main:app --reload
 ```
+
+> The JWT secret above is for local development only. Use a long, random value in any real deployment.
 
 **Backend runs at:** http://127.0.0.1:8000  
 **API Documentation:** http://127.0.0.1:8000/docs
@@ -172,6 +177,17 @@ npm run dev
 
 ---
 
+## Deployment
+
+- **Frontend:** Deployed on Vercel — https://car-inventory-reiw.vercel.app
+- **Backend:** Deployed separately on Render.
+
+> If the first request (such as login) is slow, the free-tier backend may be waking up from idle. Please wait up to a minute and try again.
+
+The demo credentials and the sample JWT secret in this README are for evaluation and local use only. Change them before any real deployment.
+
+---
+
 ## Test Accounts
 
 After seeding the database with `seed_data.py`, you can login with:
@@ -201,8 +217,7 @@ After seeding the database with `seed_data.py`, you can login with:
 ```json
 {
   "email": "user@example.com",
-  "password": "securepass123",
-  "is_admin": false
+  "password": "securepass123"
 }
 ```
 
@@ -358,6 +373,7 @@ tests/test_vehicles.py::test_concurrent_purchases_cannot_oversell_last_vehicle P
 
 ### Out of Stock Handling
 ![Out of Stock Badge with Disabled Purchase Button](image-7.png)
+
 ---
 
 ## My AI Usage
@@ -387,7 +403,7 @@ tests/test_vehicles.py::test_concurrent_purchases_cannot_oversell_last_vehicle P
 
 AI significantly accelerated the development process while maintaining high code quality:
 
-**Speed:** Approximately 60-70% faster than traditional development. Tasks that would take hours (like setting up authentication, writing 31 tests, or designing component architecture) were completed in minutes with AI assistance.
+**Speed:** By my own rough estimate, development was about 60-70% faster than it would have been without AI. Tasks that would take hours (like setting up authentication, writing 31 tests, or designing component architecture) were completed in minutes with AI assistance.
 
 **Quality:** The TDD approach enforced by AI ensured high test coverage from the start. Every feature had tests written before implementation, catching edge cases early (e.g., concurrent purchases, JWT expiry, zero-stock handling).
 
