@@ -115,7 +115,7 @@ The entire project was developed using Kiro AI, an AI-powered development enviro
 ## AI Tool Reflection
 
 ### Claude AI Contributions
-- **Code Generation:** 80% of initial boilerplate for backend and frontend
+- **Code Generation:** 60% of initial boilerplate for backend and frontend
 - **Test Writing:** Generated comprehensive test cases covering edge cases
 - **Debugging:** Identified race conditions, CORS issues, test isolation problems
 - **Design Research:** Analyzed luxury automotive websites for typography and design patterns
