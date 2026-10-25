@@ -71,7 +71,7 @@ export function HeroLanding() {
               Sign In
             </button>
             <button 
-              className="btn-hero btn-hero--secondary"
+              className="btn-hero btn-hero--outline"
               onClick={handleSwitchToRegister}
             >
               Get Started

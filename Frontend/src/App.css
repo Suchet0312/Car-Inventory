@@ -875,8 +875,10 @@ body {
 }
 
 .hero-landing__title-accent {
-  color: var(--accent);
+  color: var(--white);
   display: block;
+  font-weight: 300;
+}
   animation: glow 3s ease-in-out infinite;
 }
 
@@ -948,29 +950,31 @@ body {
 }
 
 .btn-hero--primary {
-  background: var(--accent);
-  color: var(--white);
-  box-shadow: 0 4px 20px rgba(220, 38, 38, 0.4);
+  background: var(--white);
+  color: var(--black);
+  border: 2px solid var(--white);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
 }
 
 .btn-hero--primary:hover {
-  background: var(--accent-hover);
+  background: var(--gray-200);
+  border-color: var(--gray-200);
   transform: translateY(-2px);
-  box-shadow: 0 6px 30px rgba(220, 38, 38, 0.6);
+  box-shadow: 0 6px 30px rgba(255, 255, 255, 0.3);
 }
 
 .btn-hero--primary:active {
   transform: translateY(0);
 }
 
-.btn-hero--secondary {
+.btn-hero--outline {
   background: transparent;
   color: var(--white);
   border: 2px solid var(--white);
   box-shadow: none;
 }
 
-.btn-hero--secondary:hover {
+.btn-hero--outline:hover {
   background: var(--white);
   color: var(--black);
   transform: translateY(-2px);
