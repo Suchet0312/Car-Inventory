@@ -1,4 +1,13 @@
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+const isLocalHost =
+  typeof window !== 'undefined' &&
+  (window.location.hostname === 'localhost' ||
+    window.location.hostname === '127.0.0.1');
+
+const BASE_URL =
+  import.meta.env.VITE_API_URL ||
+  (isLocalHost
+    ? 'http://127.0.0.1:8000'
+    : 'https://car-inventory-67hk.onrender.com');
 
 function getToken() {
   return localStorage.getItem('access_token');
