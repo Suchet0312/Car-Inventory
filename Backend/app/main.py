@@ -8,7 +8,7 @@ from pwdlib import PasswordHash
 from sqlalchemy import update
 from sqlalchemy.orm import Session
 
-from app.database import get_db
+from app.database import Base, engine, get_db
 from app.models import User, Vehicle
 from app.schemas import (
     PurchaseRequest,
@@ -21,6 +21,11 @@ from app.schemas import (
 from app.security import get_current_user
 
 app = FastAPI(title="Car Dealership Inventory System")
+
+
+@app.on_event("startup")
+def ensure_database_tables() -> None:
+    Base.metadata.create_all(bind=engine)
 
 # Configure CORS
 # Allow localhost for development and any origin for production deployment
